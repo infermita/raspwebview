@@ -3,6 +3,9 @@
 #include <QWebEnginePage>
 #include <QUrl>
 #include <QDebug>
+#include <QWebView>
+
+
 
 class MyWebEnginePage : public QWebEnginePage{
 protected:
@@ -20,7 +23,7 @@ protected:
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    /*
+
     //MainWindow w;
     //w.show();
     QWebView view;
@@ -29,10 +32,22 @@ int main(int argc, char *argv[])
     view.settings()->setAttribute(QWebSettings::WebGLEnabled, true);
     view.settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
     view.settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
-    view.show();
+
+    view.setFixedHeight(720);
+    view.setFixedWidth(1280);
     view.load(QUrl("http://localhost:8000"));
-    */
+
+    view.setWindowFlags(view.windowFlags() | Qt::FramelessWindowHint);
+
+    view.show();
+
+    /*
     QWebEngineView view;
+    view.settings()->setAttribute(QWebSettings::PluginsEnabled, true);
+    view.settings()->setAttribute(QWebSettings::AcceleratedCompositingEnabled, true);
+    view.settings()->setAttribute(QWebSettings::WebGLEnabled, true);
+    view.settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+    view.settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
     //MyWebEnginePage *myPage = new MyWebEnginePage;
     //myPage->setParent(&view);
     //view.setPage(myPage);
@@ -40,5 +55,6 @@ int main(int argc, char *argv[])
     view.setFixedHeight(720);
     view.setFixedWidth(1280);
     view.show();
+    */
     return a.exec();
 }
