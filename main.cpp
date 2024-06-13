@@ -4,6 +4,7 @@
 #include <QUrl>
 #include <QDebug>
 #include <QWebView>
+#include <QWebEngineSettings>
 
 
 
@@ -49,11 +50,18 @@ int main(int argc, char *argv[])
 
 
     */
+    qDebug()<<" Arg" << argv[1];
+
+    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::WebGLEnabled, true);
+
+
     QWebEngineView view;
     MyWebEnginePage *myPage = new MyWebEnginePage;
     myPage->setParent(&view);
     view.setPage(myPage);
-    view.setUrl(QUrl("http://localhost:8000"));
+    view.setUrl(QUrl(argv[1]));
     view.setFixedHeight(720);
     view.setFixedWidth(1280);
     view.show();
