@@ -7,6 +7,17 @@
 #include <QWebEngineSettings>
 
 
+class WebEnginePage : public QWebPage{
+protected:
+    void javaScriptConsoleMessage(
+                                  const QString &message,
+                                  int lineNumber,
+                                  const QString &sourceID) override{
+        qDebug()<<"message: " << message << " Line: " << lineNumber << "SourceID " << sourceID;
+        //qDebug()<<"level: "<<level;
+
+    }
+};
 
 class MyWebEnginePage : public QWebEnginePage{
 protected:
@@ -27,7 +38,8 @@ int main(int argc, char *argv[])
 
     //MainWindow w;
     //w.show();
-    /*
+    qDebug()<<" Arg" << argv[1];
+
     QWebView view;
     view.settings()->setAttribute(QWebSettings::PluginsEnabled, true);
     view.settings()->setAttribute(QWebSettings::AcceleratedCompositingEnabled, true);
@@ -35,23 +47,23 @@ int main(int argc, char *argv[])
     view.settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
     view.settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
 
-    MyWebEnginePage *myPage = new MyWebEnginePage;
+    WebEnginePage *myPage = new WebEnginePage;
     myPage->setParent(&view);
     view.setPage(myPage);
 
 
     view.setFixedHeight(720);
     view.setFixedWidth(1280);
-    view.load(QUrl("http://localhost:8000"));
+    view.load(QUrl(argv[1]));
 
     //view.setWindowFlags(view.windowFlags() | Qt::FramelessWindowHint);
 
     view.show();
 
 
-    */
-    qDebug()<<" Arg" << argv[1];
 
+
+    /*
     QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::WebGLEnabled, true);
@@ -65,6 +77,6 @@ int main(int argc, char *argv[])
     view.setFixedHeight(720);
     view.setFixedWidth(1280);
     view.show();
-
+    */
     return a.exec();
 }
