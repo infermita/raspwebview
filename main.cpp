@@ -36,8 +36,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //MainWindow w;
-    //w.show();
+
     qDebug()<<" Arg" << argv[1];
 
     QWebView view;
@@ -46,6 +45,8 @@ int main(int argc, char *argv[])
     view.settings()->setAttribute(QWebSettings::WebGLEnabled, true);
     view.settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
     view.settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
+    view.settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
+    view.settings()->setAttribute(QWebSettings::LocalContentCanAccessFileUrls, true);
 
     WebEnginePage *myPage = new WebEnginePage;
     myPage->setParent(&view);
@@ -54,9 +55,9 @@ int main(int argc, char *argv[])
 
     view.setFixedHeight(720);
     view.setFixedWidth(1280);
-    view.load(QUrl(argv[1]));
+    view.load(QUrl("http://localhost:8000"));
 
-    //view.setWindowFlags(view.windowFlags() | Qt::FramelessWindowHint);
+    view.setWindowFlags(view.windowFlags() | Qt::FramelessWindowHint);
 
     view.show();
 
