@@ -1,10 +1,10 @@
 #include <QApplication>
-#include <QWebEngineView>
-#include <QWebEnginePage>
+//#include <QWebEngineView>
+//#include <QWebEnginePage>
 #include <QUrl>
 #include <QDebug>
 #include <QWebView>
-#include <QWebEngineSettings>
+//#include <QWebEngineSettings>
 
 
 class WebEnginePage : public QWebPage{
@@ -18,7 +18,7 @@ protected:
 
     }
 };
-
+/*
 class MyWebEnginePage : public QWebEnginePage{
 protected:
     void javaScriptConsoleMessage(JavaScriptConsoleMessageLevel level,
@@ -30,7 +30,7 @@ protected:
 
     }
 };
-
+*/
 
 int main(int argc, char *argv[])
 {
@@ -55,9 +55,9 @@ int main(int argc, char *argv[])
 
     view.setFixedHeight(720);
     view.setFixedWidth(1280);
-    view.load(QUrl("http://localhost:8000"));
+    view.load(QUrl("http://192.168.2.76:8000"));
 
-    view.setWindowFlags(view.windowFlags() | Qt::FramelessWindowHint);
+    //view.setWindowFlags(view.windowFlags() | Qt::FramelessWindowHint);
 
     view.show();
 
